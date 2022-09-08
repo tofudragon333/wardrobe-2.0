@@ -4,7 +4,14 @@ import ClothingArticle from "./ClothingArticle";
 import { Grid, Card } from "semantic-ui-react";
 import Search from "./Search";
 
-function Wardrobe({ wardrobe, setDonate, setWardrobe, deleteItem, updateLastWorn }) {
+function Wardrobe({
+  wardrobe,
+  setDonate,
+  setWardrobe,
+  deleteItem,
+  updateLastWorn,
+  setItemToUpdate,
+}) {
   const [filteredClothes, setFilteredClothes] = useState("");
 
   const clothesToDisplay = wardrobe.filter((item) => {
@@ -25,6 +32,7 @@ function Wardrobe({ wardrobe, setDonate, setWardrobe, deleteItem, updateLastWorn
             key={item.id}
             setWardrobe={setWardrobe}
             deleteItem={deleteItem}
+            setItemToUpdate={setItemToUpdate}
             updateLastWorn={updateLastWorn}
           />
         ))}

@@ -10,6 +10,7 @@ function ClothingArticle({
   setWardrobe,
   deleteItem,
   updateLastWorn,
+  setItemToUpdate,
 }) {
   const navigate = useNavigate();
   // console.log("clothing article:", clothes);
@@ -18,6 +19,12 @@ function ClothingArticle({
     console.log("donation button clicked, item info:", clothes);
     setDonate(clothes);
     navigate(`/donation_site`);
+  }
+
+  function handleUpdateClick() {
+    console.log("update button clicked, item info:", clothes);
+    setItemToUpdate(clothes);
+    navigate(`/update`);
   }
 
   function handleDelete() {
@@ -53,7 +60,7 @@ function ClothingArticle({
         <Details>Category: {clothes.category}</Details>
         <Details>Last Worn: {clothes.last_worn_date}</Details>
         <Details>Notes: {clothes.notes}</Details>
-        <button>Update</button>
+        <button onClick={handleUpdateClick}>Update</button>
         <button onClick={handleDonateClick}>Donate</button>
         <button onClick={handleDate}>Worn Today</button>
         <button onClick={handleDelete}> x </button>

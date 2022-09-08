@@ -1,20 +1,26 @@
 import React, { useState, useNavigate } from "react";
 import styled from "styled-components";
 
-function ClothingForm({ user, addItem }) {
-  const newItem = {
-    id: "",
-    user_id: user.id,
+function UpdateItem({ user, addItem, itemToUpdate }) {
+  let currentItem = {
+    id: itemToUpdate.id,
+    user_id: itemToUpdate.user_id,
     donation_site_id: 1,
-    name: "",
-    image: "",
-    category: "",
-    color: "",
-    last_worn_date: 0,
-    notes: "",
+    name: itemToUpdate.name,
+    image: itemToUpdate.image,
+    category: itemToUpdate.category,
+    color: itemToUpdate.color,
+    last_worn_date: itemToUpdate.last_worn_date,
+    notes: itemToUpdate.notes,
   };
 
-  const [formData, setFormData] = useState(newItem);
+  //   const populateItemDetails = () => {
+  //     fetch(`/clothing_articles/{itemToUpdate.id}`)
+  //       .then((r) => r.json())
+  //       .then((data) => console.log("UpdateItem:", data));
+  //   };
+
+  const [formData, setFormData] = useState(currentItem);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -26,8 +32,8 @@ function ClothingForm({ user, addItem }) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formData);
-    fetch("/clothing_articles", {
-      method: "POST",
+    fetch(`/clothing_articles/${user.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accepts: "application/json",
@@ -35,8 +41,7 @@ function ClothingForm({ user, addItem }) {
       body: JSON.stringify(formData),
     })
       .then((response) => response.json())
-      .then((data) => addItem(data));
-    setFormData(newItem);
+      .then((data) => console.log(data));
   }
 
   return (
@@ -103,4 +108,4 @@ function ClothingForm({ user, addItem }) {
   );
 }
 
-export default ClothingForm;
+export default UpdateItem;

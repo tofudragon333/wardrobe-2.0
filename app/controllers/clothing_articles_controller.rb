@@ -16,7 +16,7 @@ class ClothingArticlesController < ApplicationController
     #GET one clothing item
     def show
         item = ClothingArticle.find_by(params[:id])
-        byebug
+        # byebug
         if item 
             render json: item, status: :ok
         else
@@ -46,8 +46,9 @@ class ClothingArticlesController < ApplicationController
         end
     end
 
-    #DONATE item/PATCH
+    #update item/PATCH
     def update
+        # byebug
         item = ClothingArticle.find_by(id: params[:id])
         if item
             item.update(clothing_params)
@@ -57,15 +58,6 @@ class ClothingArticlesController < ApplicationController
         end
     end
 
-    # UPDATE/PATCH item's last worn date
-    def worn_today
-        item = ClothingArticle.find_by(id: params[:id])
-        if item
-            item.update(clothing_params)
-        else
-            render json: {error: "item not found"}, status: :not_found
-        end
-    end
 
     private
     def clothing_params

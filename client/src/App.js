@@ -17,6 +17,7 @@ import Donate from "./components/Donate";
 import ClothingArticle from "./components/ClothingArticle";
 import Search from "./components/Search";
 import ClothingForm from "./components/ClothingForm";
+import UpdateItem from "./components/UpdateItem";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,6 +28,9 @@ function App() {
 
   // lifts state from ClothingArticle component
   const [donate, setDonate] = useState("nothing! bahumbug!");
+
+  // lifts state from ClothingArticle component
+  const [itemToUpdate, setItemToUpdate] = useState("nothing!");
 
   // Fetch requests
   // GET data. pass to components.
@@ -55,6 +59,7 @@ function App() {
     const newWardrobeArray = [...wardrobe, newItem];
     setWardrobe(newWardrobeArray);
   }
+
   // handle delete of item (not donating)
   function deleteItem(id) {
     fetch(`/clothing_articles/${id}`, {
@@ -64,16 +69,17 @@ function App() {
 
   // update last worn button in component, ClothingArticle.js
   function updateLastWorn(date, id) {
-    fetch(`/clothing_articles/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(date),
-    })
-      .then((r) => r.json())
-      .then((data) => handleUpdatedItem(data));
+    console.log(date);
+    // fetch(`/clothing_articles/${id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //   },
+    //   body: JSON.stringify(date),
+    // });
+    // .then((r) => r.json())
+    // .then((data) => handleUpdatedItem(data));
   }
 
   // create the relationship with clothing x donation site, removes user_id: PART 2
@@ -111,18 +117,6 @@ function App() {
       }
     });
     // // GET wishlist items. pass to component.
-    // async function fetchWishlist() {
-    //   await fetch("/wishlist_items")
-    //     .then((r) => r.json())
-    //     .then((data) => setWishlist(data));
-    //}
-    // // GET wardrobe items. pass to component.
-    // async function fetchWardrobe(user) {
-    //   await fetch("/clothing_articles")
-    //     .then((r) => r.json())
-    //     .then((data) => setWardrobe(data));
-    // }
-    // GET donation sites. pass to component.
   }, []);
   if (!user) {
     return (
@@ -161,6 +155,7 @@ function App() {
                   donationSites={donationSites}
                   deleteItem={deleteItem}
                   updateLastWorn={updateLastWorn}
+                  setItemToUpdate={setItemToUpdate}
                 />
               }
             ></Route>
@@ -181,7 +176,23 @@ function App() {
             ></Route>
             <Route
               path="/clothing_article"
-              element={<ClothingForm user={user} addItem={addItem} />}
+              element={
+                <ClothingForm
+                  user={user}
+                  addItem={addItem}
+                  setItemToUpdate={setItemToUpdate}
+                />
+              }
+            ></Route>
+            <Route
+              path="/update"
+              element={
+                <UpdateItem
+                  user={user}
+                  addItem={addItem}
+                  setItemToUpdate={setItemToUpdate}
+                />
+              }
             ></Route>
           </Routes>
         </BrowserRouter>

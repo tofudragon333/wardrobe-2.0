@@ -1,7 +1,10 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-dom";
 import styled from "styled-components";
 
-function UpdateItem({ user, addItem, itemToUpdate }) {
+function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
+  console.log(itemToUpdate);
+  // debugger;ß
   let currentItem = {
     id: itemToUpdate.id,
     user_id: itemToUpdate.user_id,
@@ -31,22 +34,34 @@ function UpdateItem({ user, addItem, itemToUpdate }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData);
-    fetch(`/clothing_articles/${user.id}`, {
+    console.log("submit", itemToUpdate.id);
+
+    fetch(`/clothing_articles/${itemToUpdate.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accepts: "application/json",
       },
       body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    });
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
+    alert("updated!");
   }
 
   return (
     <div>
-      <h1>Add clothing!</h1>
+      <div>
+        <h6>Current stats:</h6>
+        <div>
+          {typeof itemToUpdate === "string" ? (
+            itemToUpdate
+          ) : (
+            <Image src={itemToUpdate.image} alt={itemToUpdate.name} />
+          )}
+        </div>
+      </div>
+      <h1>Update clothing!</h1>
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
         <input
@@ -107,5 +122,9 @@ function UpdateItem({ user, addItem, itemToUpdate }) {
     </div>
   );
 }
+
+const Image = styled.img`
+  width: 200px;
+`;
 
 export default UpdateItem;

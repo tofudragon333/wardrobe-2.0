@@ -92,10 +92,10 @@ function App() {
 
   // create the relationship with clothing x donation site, removes user_id: PART 1
   function makeDonation(donate, siteId) {
-    console.log(donate);
+    console.log(donate.clothing_article_id);
     // update the clothing item's donation_site_id via PATCH
     // !!!!!! BREAKING at the .then//
-    fetch(`/clothing_articles/${donate.id}`, {
+    fetch(`/clothing_articles/${donate.clothing_article_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -191,6 +191,7 @@ function App() {
                   user={user}
                   addItem={addItem}
                   setItemToUpdate={setItemToUpdate}
+                  itemToUpdate={itemToUpdate}
                 />
               }
             ></Route>

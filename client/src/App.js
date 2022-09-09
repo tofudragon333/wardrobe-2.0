@@ -68,18 +68,18 @@ function App() {
   }
 
   // update last worn button in component, ClothingArticle.js
-  function updateLastWorn(date, id) {
-    console.log(date);
-    // fetch(`/clothing_articles/${id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //   },
-    //   body: JSON.stringify(date),
-    // });
-    // .then((r) => r.json())
-    // .then((data) => handleUpdatedItem(data));
+  function updateLastWorn(last_worn_date, id) {
+    console.log(last_worn_date);
+    fetch(`/clothing_articles/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(last_worn_date),
+    })
+      .then((r) => r.json())
+      .then((data) => handleUpdatedItem(data));
   }
 
   // create the relationship with clothing x donation site, removes user_id: PART 2
@@ -121,7 +121,8 @@ function App() {
   if (!user) {
     return (
       <div>
-        <h1>Login:</h1>
+        <h1>The Lion, the Witch, and the better Wardrobe</h1>
+        <h3>Login:</h3>
         <Login setUser={setUser} />
         <h6>or Signup:</h6>
         <Signup setUser={setUser} />

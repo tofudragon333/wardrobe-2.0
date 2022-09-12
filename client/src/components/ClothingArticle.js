@@ -43,7 +43,7 @@ function ClothingArticle({
       day < 10 ? `0${day}` : `${day}`
     }`;
 
-    updateLastWorn(date, id);
+    updateLastWorn(date, clothes);
   }
 
   return (

@@ -50,6 +50,7 @@ class ClothingArticlesController < ApplicationController
     def update
         # byebug
         item = ClothingArticle.find_by(id: params[:id])
+        # byebug
         if item
             item.update(clothing_params)
             # item.update(:user_id => 0)
@@ -61,6 +62,6 @@ class ClothingArticlesController < ApplicationController
 
     private
     def clothing_params
-        params.permit(:id, :donation_site_id, :user_id, :name, :image, :category, :color, :last_worn_date, :notes)
+        params.require(:clothing_article).permit(:id, :donation_site_id, :user_id, :name, :image, :category, :color, :last_worn_date, :notes, :_json)
     end
 end

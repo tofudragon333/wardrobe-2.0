@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
 function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
-  console.log(itemToUpdate);
-  // debugger;ß
+  // console.log(itemToUpdate);
+  // debugger
   let currentItem = {
     id: itemToUpdate.id,
     user_id: itemToUpdate.user_id,
@@ -24,6 +24,7 @@ function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
   //   };
 
   const [formData, setFormData] = useState(currentItem);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -43,10 +44,13 @@ function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
         Accepts: "application/json",
       },
       body: JSON.stringify(formData),
-    });
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data));
-    alert("updated!");
+    })
+      // .then((response) => response.json())
+      // .then((data) => console.log(data))
+      .then(function refreshPage() {
+        window.location.reload();
+      })
+      .then(navigate("/user"));
   }
 
   return (

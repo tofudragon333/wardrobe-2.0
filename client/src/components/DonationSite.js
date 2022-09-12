@@ -13,7 +13,9 @@ function DonationSite({
 
   function handleDonateClick() {
     console.log("handleDonateClick:", donate, site.id);
-    makeDonation(donate, site.id);
+    let siteId = site.id;
+    let siteName = site.name;
+    makeDonation(donate, siteId);
   }
   return (
     <div>

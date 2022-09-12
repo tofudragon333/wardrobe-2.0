@@ -5,7 +5,8 @@ import DonationSite from "./DonationSite";
 
 function Donate({ donationSites, setDonate, donate, makeDonation }) {
   // useEffect(() => {}, []);
-  console.log(donate);
+  const [donationSiteFilter, setDonationSiteFilter] = useState("");
+  // console.log(donate);
   return (
     <div>
       <h1>Donate</h1>
@@ -18,6 +19,14 @@ function Donate({ donationSites, setDonate, donate, makeDonation }) {
           <Image src={donate.image} alt={donate.name} />
         )}
       </div>
+      <h4>Filter donation sites by zipcode:</h4>
+      <form>
+        <input
+          type="text"
+          placeholder="zipcode"
+          onChange={(e) => e.target.value}
+        />
+      </form>
       <h3>Available donation sites:</h3>
       {donationSites.map((site) => (
         <DonationSite

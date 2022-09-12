@@ -13,7 +13,7 @@ function Wishlist({ user, wishlist }) {
   return (
     <>
       <h1>Wishlist</h1>
-      <h5>Stretch goal!</h5>
+      <h5>Stretch goal/Coming Soon!</h5>
       {/* <Card.Group itemsPerRow={4}>{items}</Card.Group>; */}
     </>
   );

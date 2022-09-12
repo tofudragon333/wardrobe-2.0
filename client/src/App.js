@@ -18,6 +18,7 @@ import ClothingArticle from "./components/ClothingArticle";
 import Search from "./components/Search";
 import ClothingForm from "./components/ClothingForm";
 import UpdateItem from "./components/UpdateItem";
+import ToBeDonated from "./components/ToBeDonated";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ function App() {
   const [wardrobe, setWardrobe] = useState([]);
   const [donationSites, setDonationSites] = useState([]);
   const [refresh, setRefresh] = useState(true);
+  const [updateWornDateItem, setUpdateWornDateItem] = useState("");
 
   // lifts state from ClothingArticle component
   const [donate, setDonate] = useState("nothing! bahumbug!");
@@ -32,7 +34,7 @@ function App() {
   // lifts state from ClothingArticle component
   const [itemToUpdate, setItemToUpdate] = useState("nothing!");
 
-  // Fetch requests
+  //  Fetch requests //
   // GET data. pass to components.
   function fetchAllData() {
     fetch("/clothing_articles")
@@ -68,18 +70,25 @@ function App() {
   }
 
   // update last worn button in component, ClothingArticle.js
-  function updateLastWorn(last_worn_date, id) {
+  function updateLastWorn(last_worn_date, clothesObject) {
     console.log(last_worn_date);
-    fetch(`/clothing_articles/${id}`, {
+    clothesObject.last_worn_date = last_worn_date;
+    fetch(`/clothing_articles/${clothesObject.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        // Accept: "application/json",
       },
-      body: JSON.stringify(last_worn_date),
-    })
-      .then((r) => r.json())
-      .then((data) => handleUpdatedItem(data));
+      body: JSON.stringify(clothesObject),
+    }).then(() => fetchAllData());
+  }
+
+  // update Date worn on item
+  function handleDateUpdateItem(updated) {
+    const updatedItem = wardrobe.map((item) =>
+      item.id === updated.id ? updated : item
+    );
+    return updatedItem;
   }
 
   // create the relationship with clothing x donation site, removes user_id: PART 2
@@ -92,17 +101,19 @@ function App() {
 
   // create the relationship with clothing x donation site, removes user_id: PART 1
   function makeDonation(donate, siteId) {
-    console.log(donate.clothing_article_id);
+    // console.log(donate.id);
+    donate.donation_site_id = siteId;
+    donate.user_id = 0;
     // update the clothing item's donation_site_id via PATCH
     // !!!!!! BREAKING at the .then//
-    fetch(`/clothing_articles/${donate.clothing_article_id}`, {
+    fetch(`/clothing_articles/${donate.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify(donate),
-    });
+    }).then(() => fetchAllData());
     // .then((r) => r.json())
     // .then((data) => handleUpdatedItem(data));
     // deleting the clothing item's user_id is done on the back-end
@@ -113,7 +124,10 @@ function App() {
     // GET that keeps user logged in
     fetch("/me").then((response) => {
       if (response.ok) {
-        response.json().then((user) => setUser(user));
+        response
+          .json()
+          .then((user) => setUser(user))
+          .then(fetchAllData);
       }
     });
     // // GET wishlist items. pass to component.
@@ -193,6 +207,16 @@ function App() {
                   addItem={addItem}
                   setItemToUpdate={setItemToUpdate}
                   itemToUpdate={itemToUpdate}
+                />
+              }
+            ></Route>
+            <Route
+              path="/to_be_donated"
+              element={
+                <ToBeDonated
+                  donate={donate}
+                  wardrobe={wardrobe}
+                  deleteItem={deleteItem}
                 />
               }
             ></Route>

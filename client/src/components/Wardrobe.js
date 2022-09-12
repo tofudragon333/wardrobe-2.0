@@ -12,13 +12,22 @@ function Wardrobe({
   updateLastWorn,
   setItemToUpdate,
 }) {
+  // filter by category of item
   const [filteredClothes, setFilteredClothes] = useState("");
 
+  // filter by category of item, part 2
   const clothesToDisplay = wardrobe.filter((item) => {
-    if (item.name.toLowerCase().includes(filteredClothes.toLowerCase())) {
+    if (item.category.toLowerCase().includes(filteredClothes.toLowerCase())) {
       return item;
     }
   });
+
+  // // filter by color of item, part 2
+  // const clothesToDisplay2 = wardrobe.filter((item) => {
+  //   if (item.category.toLowerCase().includes(filteredClothes2.toLowerCase())) {
+  //     return item;
+  //   }
+  // });
 
   return (
     <div>

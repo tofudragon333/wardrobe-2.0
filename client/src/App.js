@@ -100,12 +100,11 @@ function App() {
   }
 
   // create the relationship with clothing x donation site, removes user_id: PART 1
-  function makeDonation(donate, siteId) {
+  function makeDonation(donate, siteId, siteName) {
     // console.log(donate.id);
     donate.donation_site_id = siteId;
-    donate.user_id = 0;
+    donate.notes = `Donate to: ${siteName}!`;
     // update the clothing item's donation_site_id via PATCH
-    // !!!!!! BREAKING at the .then//
     fetch(`/clothing_articles/${donate.id}`, {
       method: "PATCH",
       headers: {
@@ -113,11 +112,16 @@ function App() {
         Accept: "application/json",
       },
       body: JSON.stringify(donate),
-    }).then(() => fetchAllData());
-    // .then((r) => r.json())
-    // .then((data) => handleUpdatedItem(data));
-    // deleting the clothing item's user_id is done on the back-end
-    // update wardrobe to show change in user's wardrobe, i.e. setWardrobe()
+    })
+      .then(() => fetchAllData())
+      .then(alert("Set aside to be donated!"));
+  }
+
+  // logout function
+  function logout() {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then(window.location.reload());
   }
 
   useEffect(() => {

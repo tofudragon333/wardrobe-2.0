@@ -7,6 +7,7 @@ function Login({ setUser }) {
   const [password, setPassword] = useState("");
 
   function handleSubmit(e) {
+    console.log(username, password);
     e.preventDefault();
     fetch("/login", {
       method: "POST",
@@ -29,7 +30,7 @@ function Login({ setUser }) {
           placeholder="enter Username/email here"
         />
         <input
-          type="text"
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
           placeholder=" enter password/here"
         />

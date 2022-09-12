@@ -34,17 +34,21 @@ function Wardrobe({
       <h1>Wardrobe</h1>
       <Search wardrobe={wardrobe} setFilteredClothes={setFilteredClothes} />
       <Card.Group itemsPerRow={4}>
-        {clothesToDisplay.map((item) => (
-          <ClothingArticle
-            clothes={item}
-            setDonate={setDonate}
-            key={item.id}
-            setWardrobe={setWardrobe}
-            deleteItem={deleteItem}
-            setItemToUpdate={setItemToUpdate}
-            updateLastWorn={updateLastWorn}
-          />
-        ))}
+        {clothesToDisplay.map((item) => {
+          if (item.donation_site_id === 1) {
+            return (
+              <ClothingArticle
+                clothes={item}
+                setDonate={setDonate}
+                key={item.id}
+                setWardrobe={setWardrobe}
+                deleteItem={deleteItem}
+                setItemToUpdate={setItemToUpdate}
+                updateLastWorn={updateLastWorn}
+              />
+            );
+          }
+        })}
       </Card.Group>
     </div>
   );

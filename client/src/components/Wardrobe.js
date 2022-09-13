@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { useEffect } from "react";
 import ClothingArticle from "./ClothingArticle";
 import { Grid, Card } from "semantic-ui-react";
@@ -11,6 +11,7 @@ function Wardrobe({
   deleteItem,
   updateLastWorn,
   setItemToUpdate,
+  runScanTest,
 }) {
   // filter by category of item
   const [filteredClothes, setFilteredClothes] = useState("");
@@ -28,6 +29,11 @@ function Wardrobe({
   //     return item;
   //   }
   // });
+
+  // to run the scan whenever wardrobe reloads/is updated
+  useEffect(() => {
+    runScanTest();
+  }, [wardrobe]);
 
   return (
     <div>

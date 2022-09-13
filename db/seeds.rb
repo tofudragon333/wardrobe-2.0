@@ -108,7 +108,7 @@ c7 = ClothingArticle.create(user_id: 1,:name => "Shrek Shirt",
     :image => "https://m.media-amazon.com/images/I/71LI5rb9uwL._AC_UX679_.jpg",
     :category => "shirt",
     :color => "off-white",
-    :last_worn_date => 0,
+    :last_worn_date => 2022420,
     :notes => "")
 
 c8=ClothingArticle.create(user_id: 1,:name => "Jean Flip Flop Leg Warmers",

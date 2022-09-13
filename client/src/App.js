@@ -19,6 +19,8 @@ import Search from "./components/Search";
 import ClothingForm from "./components/ClothingForm";
 import UpdateItem from "./components/UpdateItem";
 import ToBeDonated from "./components/ToBeDonated";
+import { differenceInCalendarMonths } from "date-fns";
+import SparksNoJoy from "./components/SparksNoJoy";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -71,7 +73,7 @@ function App() {
 
   // update last worn button in component, ClothingArticle.js
   function updateLastWorn(last_worn_date, clothesObject) {
-    console.log(last_worn_date);
+    // console.log(last_worn_date);
     clothesObject.last_worn_date = last_worn_date;
     fetch(`/clothing_articles/${clothesObject.id}`, {
       method: "PATCH",
@@ -119,6 +121,7 @@ function App() {
 
   // logout function
   function logout() {
+    console.log("loggin out...");
     fetch("/logout", {
       method: "DELETE",
     }).then(window.location.reload());
@@ -136,6 +139,98 @@ function App() {
     });
     // // GET wishlist items. pass to component.
   }, []);
+
+  // ! run scan for last_worn_date
+  // const result = differenceInCalendarMonths(
+  //   new Date(),
+  //   format.last_worn_date()
+  // );
+
+  // function scanDateWornDaily() {
+  //   const currentTime = new Date().getTime(); //current unix timestamp
+  //   const execTime = new Date().setHours(20, 0, 0, 0); //API call time = today at 20:00
+  //   let timeLeft;
+  //   if (currentTime < execTime) {
+  //     //it's currently earlier than 20:00
+  //     timeLeft = execTime - currentTime;
+  //   } else {
+  //     //it's currently later than 20:00, schedule for tomorrow at 20:00
+  //     timeLeft = execTime + 86400000 - currentTime;
+  //   }
+  //   setTimeout(function () {
+  //     setInterval(function () {
+  //       let currentDate = new Date();
+  //       let currentMonth = currentDate.getMonth();
+  //       let currentYear = currentDate.getFullYear();
+  //       let currentDay = currentDate.getDate();
+  //       let toDonateArray = [];
+
+  //       //code to check date
+
+  //       wardrobe.forEach((item) => {
+  //         let yearOld = item.last_worn_date.substring(0, 3);
+  //         console.log(yearOld);
+  //         let monthOld = item.last_worn_date.substring(4, 6);
+  //         console.log(monthOld);
+  //         // YYYY/MM/DD
+  //         // 0123456789
+  //         let dayOld = item.last_worn_date.substring(8, 10);
+  //         console.log(dayOld);
+  //         debugger;
+  //         const result = differenceInCalendarMonths(
+  //           // now
+  //           new Date(currentYear, currentMonth, currentDay),
+  //           //then
+  //           new Date(yearOld, monthOld, dayOld)
+  //         );
+
+  //         if (result > 3) {
+  //           toDonateArray.push(item);
+  //           console.log(toDonateArray);
+  //         }
+  //       });
+  //     }, 86400000); //repeat every 24h
+  //   }, timeLeft); //wait until 20:00 as calculated above
+  // }
+
+  // ! test to run scan with button
+  const [sparksNoJoyItems, setSparksNoJoyItems] = useState([]);
+  function runScanTest() {
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    let currentDay = currentDate.getDate();
+    let toDonateArray = [];
+    console.log("wardrobe app:", wardrobe);
+    wardrobe.forEach((item) => {
+      // console.log(item.last_date_worn);
+      let yearOld = item.last_worn_date.substring(0, 4);
+      console.log(yearOld);
+      let monthOld = item.last_worn_date.substring(5, 7);
+      console.log(monthOld);
+      // YYYY/MM/DD
+      // 0123456789
+      let dayOld = item.last_worn_date.substring(8, 10);
+      console.log(dayOld);
+      // debugger;
+      const result = differenceInCalendarMonths(
+        // now
+        new Date(currentYear, currentMonth, currentDay),
+        //then
+        new Date(yearOld, monthOld, dayOld)
+      );
+      console.log(result);
+      // debugger;
+      if (result > 3) {
+        toDonateArray.push(item);
+        console.log(toDonateArray);
+        // debugger;
+      }
+    });
+    console.log(toDonateArray);
+    setSparksNoJoyItems(toDonateArray);
+  }
+
   if (!user) {
     return (
       <div>
@@ -150,7 +245,7 @@ function App() {
     return (
       <div className="App">
         <h1>The Lion, the Witch, and the better Wardrobe</h1>
-        <button onClick={() => setUser(null)}>Logout</button>
+        <button onClick={() =>logout()}>Logout</button>
         <button
           onClick={() => {
             fetchAllData();
@@ -159,6 +254,7 @@ function App() {
         >
           Populate Data
         </button>
+        <button onClick={() => runScanTest()}>Run Date Scan</button>
         {/* <Search /> */}
         <BrowserRouter>
           <NavBar setUser={setUser} />
@@ -175,6 +271,7 @@ function App() {
                   deleteItem={deleteItem}
                   updateLastWorn={updateLastWorn}
                   setItemToUpdate={setItemToUpdate}
+                  runScanTest={runScanTest}
                 />
               }
             ></Route>
@@ -221,6 +318,20 @@ function App() {
                   donate={donate}
                   wardrobe={wardrobe}
                   deleteItem={deleteItem}
+                />
+              }
+            ></Route>
+            <Route
+              path="/sparks_no_joy_sadge"
+              element={
+                <SparksNoJoy
+                  clothes={sparksNoJoyItems}
+                  setDonate={setDonate}
+                  setWardrobe={setWardrobe}
+                  deleteItem={deleteItem}
+                  updateLastWorn={updateLastWorn}
+                  setItemToUpdate={setItemToUpdate}
+                  // setSparksNoJoyItems={setSparksNoJoyItems}
                 />
               }
             ></Route>

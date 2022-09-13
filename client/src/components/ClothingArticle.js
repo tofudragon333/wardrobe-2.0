@@ -39,11 +39,12 @@ function ClothingArticle({
     let year = newDate.getFullYear();
     let id = clothes.id;
 
-    let date = `${year}/${month < 10 ? `0${month}` : `${month}`}/${
+    let date = `${year}${month < 10 ? `0${month}` : `${month}`}${
       day < 10 ? `0${day}` : `${day}`
     }`;
-
-    updateLastWorn(date, clothes);
+    const dateAsInteger = parseInt(date);
+    console.log("handleDate/ClothingArticle.js:", dateAsInteger);
+    updateLastWorn(dateAsInteger, clothes);
   }
 
   return (

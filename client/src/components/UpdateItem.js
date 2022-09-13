@@ -13,7 +13,7 @@ function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
     image: itemToUpdate.image,
     category: itemToUpdate.category,
     color: itemToUpdate.color,
-    last_worn_date: itemToUpdate.last_worn_date,
+    last_worn_date: parseInt(itemToUpdate.last_worn_date),
     notes: itemToUpdate.notes,
   };
 
@@ -28,6 +28,14 @@ function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
+    // console.log("name:", name);
+    // console.log("value:", value);
+    setFormData({ ...formData, [name]: value });
+  }
+
+  function handleNumberChange(e) {
+    const value = parseInt(e.target.value);
+    const { name } = e.target;
     // console.log("name:", name);
     // console.log("value:", value);
     setFormData({ ...formData, [name]: value });
@@ -105,11 +113,11 @@ function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
         <br />
         <label>Last Worn:</label>
         <input
-          type="text"
+          type="number"
           name="last_worn_date"
           placeholder="last worn: YYYYMMDD"
           value={formData.last_worn_date}
-          onChange={handleChange}
+          onChange={handleNumberChange}
         />
         <br />
         <label>notes:</label>
@@ -123,6 +131,19 @@ function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
         <br />
         <input type="submit" value="Submit" />
       </form>
+      {/* testing to see if i can separately update last_worn_date as a number
+      (no) */}
+      {/* <form>
+        <label>Last Worn:</label>
+        <input
+          type="number"
+          name="last_worn_date"
+          placeholder="last worn: YYYYMMDD"
+          value={formData.last_worn_date}
+          onChange={handleChange}
+        />
+        <input type="submit" value="Submit" />
+      </form> */}
     </div>
   );
 }

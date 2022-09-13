@@ -23,6 +23,14 @@ function ClothingForm({ user, addItem }) {
     setFormData({ ...formData, [name]: value });
   }
 
+  function handleNumberChange(e) {
+    const value = parseInt(e.target.value);
+    const { name } = e.target;
+    // console.log("name:", name);
+    // console.log("value:", value);
+    setFormData({ ...formData, [name]: value });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formData);
@@ -81,11 +89,11 @@ function ClothingForm({ user, addItem }) {
         <br />
         <label>Last Worn:</label>
         <input
-          type="text"
+          type="number"
           name="last_worn_date"
           placeholder="last worn: YYYYMMDD"
           value={formData.last_worn_date}
-          onChange={handleChange}
+          onChange={handleNumberChange}
         />
         <br />
         <label>notes:</label>

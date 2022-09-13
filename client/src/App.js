@@ -119,6 +119,24 @@ function App() {
       .then(alert("Set aside to be donated!"));
   }
 
+  // Take back function
+  function takeBackItem(clothes) {
+    // console.log(clothes.id);
+    clothes.donation_site_id = 1;
+    clothes.notes = `No longer donating!`;
+    // update the clothing item's donation_site_id via PATCH
+    fetch(`/clothing_articles/${clothes.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(clothes),
+    })
+      .then(() => fetchAllData())
+      .then(alert("Took back!"));
+  }
+
   // logout function
   function logout() {
     console.log("loggin out...");
@@ -320,6 +338,7 @@ function App() {
                   donate={donate}
                   wardrobe={wardrobe}
                   deleteItem={deleteItem}
+                  takeBackItem={takeBackItem}
                 />
               }
             ></Route>

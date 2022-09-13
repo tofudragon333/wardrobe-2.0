@@ -1,11 +1,18 @@
+import { set } from "date-fns";
 import React from "react";
 import styled from "styled-components";
 
-function ToBeDonatedItemCard({ clothes, deleteItem }) {
+function ToBeDonatedItemCard({ clothes, deleteItem, takeBackItem }) {
   function handleDelete() {
     deleteItem(clothes.id);
     alert("donated!!");
   }
+
+  function handleTakeBackAction() {
+    takeBackItem(clothes);
+    // alert("taking item back!");
+  }
+
   return (
     <div>
       <div>
@@ -21,6 +28,7 @@ function ToBeDonatedItemCard({ clothes, deleteItem }) {
         <Details>Category: {clothes.category}</Details>
         {/* <Details>Last Worn: {clothes.last_worn_date}</Details> */}
         <Details>Notes: {clothes.notes}</Details>
+        <button onClick={handleTakeBackAction}>Take Back!</button>
         <button onClick={handleDelete}>Donated!</button>
       </div>
     </div>

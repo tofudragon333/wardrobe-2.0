@@ -21,6 +21,7 @@ import UpdateItem from "./components/UpdateItem";
 import ToBeDonated from "./components/ToBeDonated";
 import { differenceInCalendarMonths } from "date-fns";
 import SparksNoJoy from "./components/SparksNoJoy";
+import Outfits from "./components/Outfits";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -356,6 +357,7 @@ function App() {
                 />
               }
             ></Route>
+            <Route path="/outfits" element={<Outfits />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

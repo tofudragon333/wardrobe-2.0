@@ -10,8 +10,9 @@ function HomePage() {
         don't wear.
       </h5>
       <h6>
-        If the data doesn't populate at first, please click populate at the top
-        of the page!
+        If the data doesn't populate at first, please click "Populate Data" at
+        the top of the page. To scan for date last worn, press the labeled
+        button. It is advised to do this right after pressing "Populate Data."
       </h6>
     </>
   );

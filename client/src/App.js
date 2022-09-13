@@ -204,13 +204,15 @@ function App() {
     console.log("wardrobe app:", wardrobe);
     wardrobe.forEach((item) => {
       // console.log(item.last_date_worn);
-      let yearOld = item.last_worn_date.substring(0, 4);
+      let stringDate = item.last_worn_date.toString();
+      console.log(stringDate);
+      let yearOld = stringDate.substring(0, 4);
       console.log(yearOld);
-      let monthOld = item.last_worn_date.substring(5, 7);
+      let monthOld = stringDate.substring(4, 6);
       console.log(monthOld);
       // YYYY/MM/DD
       // 0123456789
-      let dayOld = item.last_worn_date.substring(8, 10);
+      let dayOld = stringDate.substring(6, 8);
       console.log(dayOld);
       // debugger;
       const result = differenceInCalendarMonths(
@@ -245,7 +247,7 @@ function App() {
     return (
       <div className="App">
         <h1>The Lion, the Witch, and the better Wardrobe</h1>
-        <button onClick={() =>logout()}>Logout</button>
+        <button onClick={() => logout()}>Logout</button>
         <button
           onClick={() => {
             fetchAllData();

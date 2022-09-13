@@ -33,7 +33,7 @@ function Wardrobe({
   // to run the scan whenever wardrobe reloads/is updated
   useEffect(() => {
     runScanTest();
-  }, [wardrobe]);
+  }, []);
 
   return (
     <div>

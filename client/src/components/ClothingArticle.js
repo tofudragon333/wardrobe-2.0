@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Button, Image } from "semantic-ui-react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+// import Button from "@mui/material/Button";
 
 function ClothingArticle({
   clothes,
@@ -49,25 +50,28 @@ function ClothingArticle({
 
   return (
     <Card>
-      <div>
-        <div>
-          <img
-            width={250}
-            floated="left"
-            src={clothes.image}
-            alt={clothes.name}
-            // onClick={handleWardrobeClick}
-          />
-        </div>
-        <div>{clothes.name}</div>
-        <Details>Category: {clothes.category}</Details>
-        <Details>Last Worn: {clothes.last_worn_date}</Details>
-        <Details>Notes: {clothes.notes}</Details>
-        <button onClick={handleUpdateClick}>Update</button>
+      <Image
+        width={250}
+        src={clothes.image}
+        alt={clothes.name}
+        // onClick={handleWardrobeClick}
+        wrapped
+        ui={false}
+      />
+      <Card.Content>
+        <Card.Description>{clothes.name}</Card.Description>
+        <Card.Description>Category: {clothes.category}</Card.Description>
+        <Card.Description>Last Worn: {clothes.last_worn_date}</Card.Description>
+        <Card.Description>Notes: {clothes.notes}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <button class="ui button" onClick={handleUpdateClick}>
+          Update
+        </button>
         <button onClick={handleDonateClick}>Donate</button>
         <button onClick={handleDate}>Worn Today</button>
         <button onClick={handleDelete}> x </button>
-      </div>
+      </Card.Content>
     </Card>
   );
 }

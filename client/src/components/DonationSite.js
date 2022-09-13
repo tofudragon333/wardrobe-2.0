@@ -19,10 +19,11 @@ function DonationSite({
   }
   return (
     <div>
-      <div>Name: {site.name}</div>
+      <div>{site.name}</div>
       <Details>Address:{site.address}</Details>
       <Details>Phone number: {site.number}</Details>
       <button onClick={handleDonateClick}>Donate!</button>
+      <br />
     </div>
   );
 }

@@ -100,7 +100,7 @@ function ClothingForm({ user, addItem }) {
         <textarea
           type="text"
           name="notes"
-          placeholder="notes"
+          placeholder="notes - last worn date must be in YYYYMMDD"
           value={formData.notes}
           onChange={handleChange}
         />

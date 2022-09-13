@@ -55,7 +55,9 @@ function Wardrobe({
     <div>
       <h1>Wardrobe</h1>
       <Search wardrobe={wardrobe} setFilteredClothes={setFilteredClothes} />
-      <Card.Group class= "grid-container" itemsPerRow={3}>{cards}</Card.Group>
+      <Card.Group className="grid-container" itemsPerRow={3}>
+        {cards}
+      </Card.Group>
     </div>
   );
 }

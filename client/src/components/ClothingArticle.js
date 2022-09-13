@@ -49,7 +49,7 @@ function ClothingArticle({
   }
 
   return (
-    <Card>
+    <Card className="custom-card">
       <Image
         width={250}
         src={clothes.image}
@@ -65,7 +65,7 @@ function ClothingArticle({
         <Card.Description>Notes: {clothes.notes}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <button class="ui button" onClick={handleUpdateClick}>
+        <button className="ui button" onClick={handleUpdateClick}>
           Update
         </button>
         <button onClick={handleDonateClick}>Donate</button>

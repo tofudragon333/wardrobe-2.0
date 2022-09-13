@@ -38,6 +38,15 @@
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction:row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  /* grid-template-columns: auto auto auto auto; */
+}
+
+.custom-card {
+  margin: 20px;
 }

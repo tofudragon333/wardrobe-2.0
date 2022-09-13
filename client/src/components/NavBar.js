@@ -12,14 +12,31 @@ function NavBar({ setUser, setRefresh, refresh }) {
   return (
     <div>
       {/* <Link to="/home">Home</Link> */}
-      <Link to="/">Home ||</Link>
-      <Link to="/user">Wardrobe ||</Link>
-      <Link to="/wishlist_item">Wishlist || </Link>
-      <Link to="/donation_site"> Donate ||</Link>
-      <Link to="/to_be_donated">To Be Donated ||</Link>
-      <Link to="/sparks_no_joy_sadge">Sparks No Joy ||</Link>
-      <Link to="/clothing_article">Add Clothes ||</Link>
-      <Link to="/outfits">Outfits</Link>
+      <Link className="button" to="/">
+        Home
+      </Link>
+      <Link className="button" to="/user">
+        Wardrobe
+      </Link>
+      <Link className="button" to="/wishlist_item">
+        Wishlist
+      </Link>
+      <Link className="button" to="/donation_site">
+        {" "}
+        Donate
+      </Link>
+      <Link className="button" to="/to_be_donated">
+        To Be Donated
+      </Link>
+      <Link className="button" to="/sparks_no_joy_sadge">
+        Sparks No Joy
+      </Link>
+      <Link className="button" to="/clothing_article">
+        Add Clothes
+      </Link>
+      <Link className="button" to="/outfits">
+        Outfits
+      </Link>
 
       {/* <button onClick={handleLogOut}>Logout</button> */}
     </div>

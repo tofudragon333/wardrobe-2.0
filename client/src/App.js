@@ -266,8 +266,11 @@ function App() {
     return (
       <div className="App">
         <h1>The Lion, the Witch, and the better Wardrobe</h1>
-        <button onClick={() => logout()}>Logout</button>
+        <button className="button" onClick={() => logout()}>
+          Logout
+        </button>
         <button
+          className="button"
           onClick={() => {
             fetchAllData();
             cumAndDone();
@@ -275,7 +278,9 @@ function App() {
         >
           Populate Data
         </button>
-        <button onClick={() => runScanTest()}>Run Date Scan</button>
+        <button className="button" onClick={() => runScanTest()}>
+          Run Date Scan
+        </button>
         {/* <Search /> */}
         <BrowserRouter>
           <NavBar setUser={setUser} />

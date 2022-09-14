@@ -183,7 +183,11 @@
   margin-left: 170px;
 } 
 
-.homepage-container h5, img {
+.homepage-container h5 {
   display: inline-flex;
   justify-content: space-evenly;
+}
+
+.homepage-pictures {
+  display: inline-block;
 }

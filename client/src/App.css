@@ -53,7 +53,8 @@
 
 .custom-card {
   margin: 20px;
-  box-shadow: 8px 8px 5px #616161;
+  /* box-shadow: 8px 8px 5px #616161; */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5), 0 5px 5px 0 rgba(0, 0, 0, 0.5);
   width: 300px;
   height: 520px; 
   background-color: #555555;
@@ -132,6 +133,10 @@
   justify-content: center;
 }
 
+.form {
+  display: flexbox;
+}
+
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
@@ -177,3 +182,8 @@
   justify-content: center;
   margin-left: 170px;
 } 
+
+.homepage-container h5, img {
+  display: inline-flex;
+  justify-content: space-evenly;
+}

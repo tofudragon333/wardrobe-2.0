@@ -96,7 +96,7 @@ function ClothingForm({ user, addItem }) {
           onChange={handleNumberChange}
         />
         <br />
-        <label>notes:</label>
+        <label>Notes:</label>
         <textarea
           className="notes"
           type="text"

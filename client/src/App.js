@@ -24,6 +24,7 @@ import SparksNoJoy from "./components/SparksNoJoy";
 import Outfits from "./components/Outfits";
 
 function App() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [wishlist, setWishlist] = useState([]);
   const [wardrobe, setWardrobe] = useState([]);
@@ -143,7 +144,9 @@ function App() {
     console.log("loggin out...");
     fetch("/logout", {
       method: "DELETE",
-    }).then(window.location.reload());
+    })
+      .then(navigate("/"))
+      .then(window.location.reload());
   }
 
   useEffect(() => {
@@ -252,119 +255,129 @@ function App() {
     setSparksNoJoyItems(toDonateArray);
   }
 
+  //toggle signup page
+  const [showResults, setShowResults] = useState(false);
+
   if (!user) {
     return (
       <div>
         <h1>The Lion, the Witch, and the better Wardrobe</h1>
-        <h3>Login:</h3>
-        <Login setUser={setUser} />
-        <h6>or Signup:</h6>
-        <Signup setUser={setUser} />
+        <img
+          className="login-page-image"
+          src="https://www.apetogentleman.com/wp-content/uploads/2020/04/minimalist-wardrobe.jpg"
+          alt="clothes"
+        />
+        <div className="login-container">
+          <h3>Login:</h3>
+          <Login setUser={setUser} />
+          <h6 onClick={() => setShowResults(!showResults)}>or Signup:</h6>
+          {showResults ? <Signup setUser={setUser} /> : null}
+        </div>
       </div>
     );
   } else {
     return (
       <div className="App">
         <h1>The Lion, the Witch, and the better Wardrobe</h1>
-        <button className="button" onClick={() => logout()}>
-          Logout
-        </button>
-        <button
-          className="button"
-          onClick={() => {
-            fetchAllData();
-            cumAndDone();
-          }}
-        >
-          Populate Data
-        </button>
-        <button className="button" onClick={() => runScanTest()}>
-          Run Date Scan
-        </button>
+        <div className="navbar">
+          <button className="button" onClick={() => logout()}>
+            Logout
+          </button>
+          <button
+            className="button"
+            onClick={() => {
+              fetchAllData();
+              cumAndDone();
+            }}
+          >
+            Populate Data
+          </button>
+          <button className="button" onClick={() => runScanTest()}>
+            Run Date Scan
+          </button>
+        </div>
         {/* <Search /> */}
-        <BrowserRouter>
-          <NavBar setUser={setUser} />
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route
-              path="/user"
-              element={
-                <Wardrobe
-                  wardrobe={wardrobe}
-                  setDonate={setDonate}
-                  setWardrobe={setWardrobe}
-                  donationSites={donationSites}
-                  deleteItem={deleteItem}
-                  updateLastWorn={updateLastWorn}
-                  setItemToUpdate={setItemToUpdate}
-                  runScanTest={runScanTest}
-                />
-              }
-            ></Route>
-            <Route
-              path="/wishlist_item"
-              element={<Wishlist wishlist={wishlist} />}
-            ></Route>
-            <Route
-              path="/donation_site"
-              element={
-                <Donate
-                  donationSites={donationSites}
-                  setDonate={setDonate}
-                  donate={donate}
-                  makeDonation={makeDonation}
-                />
-              }
-            ></Route>
-            <Route
-              path="/clothing_article"
-              element={
-                <ClothingForm
-                  user={user}
-                  addItem={addItem}
-                  setItemToUpdate={setItemToUpdate}
-                />
-              }
-            ></Route>
-            <Route
-              path="/update"
-              element={
-                <UpdateItem
-                  user={user}
-                  addItem={addItem}
-                  setItemToUpdate={setItemToUpdate}
-                  itemToUpdate={itemToUpdate}
-                />
-              }
-            ></Route>
-            <Route
-              path="/to_be_donated"
-              element={
-                <ToBeDonated
-                  donate={donate}
-                  wardrobe={wardrobe}
-                  deleteItem={deleteItem}
-                  takeBackItem={takeBackItem}
-                />
-              }
-            ></Route>
-            <Route
-              path="/sparks_no_joy_sadge"
-              element={
-                <SparksNoJoy
-                  clothes={sparksNoJoyItems}
-                  setDonate={setDonate}
-                  setWardrobe={setWardrobe}
-                  deleteItem={deleteItem}
-                  updateLastWorn={updateLastWorn}
-                  setItemToUpdate={setItemToUpdate}
-                  // setSparksNoJoyItems={setSparksNoJoyItems}
-                />
-              }
-            ></Route>
-            <Route path="/outfits" element={<Outfits />}></Route>
-          </Routes>
-        </BrowserRouter>
+        <NavBar setUser={setUser} />
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route
+            path="/user"
+            element={
+              <Wardrobe
+                wardrobe={wardrobe}
+                setDonate={setDonate}
+                setWardrobe={setWardrobe}
+                donationSites={donationSites}
+                deleteItem={deleteItem}
+                updateLastWorn={updateLastWorn}
+                setItemToUpdate={setItemToUpdate}
+                runScanTest={runScanTest}
+              />
+            }
+          ></Route>
+          <Route
+            path="/wishlist_item"
+            element={<Wishlist wishlist={wishlist} />}
+          ></Route>
+          <Route
+            path="/donation_site"
+            element={
+              <Donate
+                donationSites={donationSites}
+                setDonate={setDonate}
+                donate={donate}
+                makeDonation={makeDonation}
+              />
+            }
+          ></Route>
+          <Route
+            path="/clothing_article"
+            element={
+              <ClothingForm
+                user={user}
+                addItem={addItem}
+                setItemToUpdate={setItemToUpdate}
+              />
+            }
+          ></Route>
+          <Route
+            path="/update"
+            element={
+              <UpdateItem
+                user={user}
+                addItem={addItem}
+                setItemToUpdate={setItemToUpdate}
+                itemToUpdate={itemToUpdate}
+              />
+            }
+          ></Route>
+          <Route
+            path="/to_be_donated"
+            element={
+              <ToBeDonated
+                donate={donate}
+                wardrobe={wardrobe}
+                deleteItem={deleteItem}
+                takeBackItem={takeBackItem}
+              />
+            }
+          ></Route>
+          <Route
+            path="/sparks_no_joy_sadge"
+            element={
+              <SparksNoJoy
+                clothes={sparksNoJoyItems}
+                setDonate={setDonate}
+                setWardrobe={setWardrobe}
+                deleteItem={deleteItem}
+                updateLastWorn={updateLastWorn}
+                setItemToUpdate={setItemToUpdate}
+                // setSparksNoJoyItems={setSparksNoJoyItems}
+              />
+            }
+          ></Route>
+          <Route path="/outfits" element={<Outfits />}></Route>
+        </Routes>
       </div>
     );
   }

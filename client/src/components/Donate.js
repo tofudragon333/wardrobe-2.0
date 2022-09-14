@@ -19,14 +19,14 @@ function Donate({ donationSites, setDonate, donate, makeDonation }) {
           <Image src={donate.image} alt={donate.name} />
         )}
       </div>
-      <h4>Filter donation sites by zipcode:</h4>
+      {/* <h4>Filter donation sites by zipcode:</h4>
       <form>
         <input
           type="text"
           placeholder="zipcode"
           onChange={(e) => e.target.value}
         />
-      </form>
+      </form> */}
       <h3>Available donation sites:</h3>
       {donationSites.map((site) => (
         <DonationSite

@@ -10,7 +10,7 @@ function NavBar({ setUser, setRefresh, refresh }) {
   //   }).then((r) => setUser(r));
   // }
   return (
-    <div>
+    <div className="navbar">
       {/* <Link to="/home">Home</Link> */}
       <Link className="button" to="/">
         Home

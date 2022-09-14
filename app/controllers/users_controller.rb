@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     # GET/keeps user logged in
     def show
+      # byebug
         user = User.find_by(id: session[:user_id])
         # byebug - this works
         if user

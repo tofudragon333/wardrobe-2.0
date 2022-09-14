@@ -48,7 +48,7 @@ function ClothingForm({ user, addItem }) {
   }
 
   return (
-    <div>
+    <div className="form">
       <h1>Add clothing!</h1>
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
@@ -98,6 +98,7 @@ function ClothingForm({ user, addItem }) {
         <br />
         <label>notes:</label>
         <textarea
+          className="notes"
           type="text"
           name="notes"
           placeholder="notes - last worn date must be in YYYYMMDD"
@@ -105,7 +106,7 @@ function ClothingForm({ user, addItem }) {
           onChange={handleChange}
         />
         <br />
-        <input type="submit" value="Submit" />
+        <input className="button" type="submit" value="Submit" />
       </form>
     </div>
   );

@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Card, Button, Image } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-// import Button from "@mui/material/Button";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 function ClothingArticle({
   clothes,

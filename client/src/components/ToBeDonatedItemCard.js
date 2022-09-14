@@ -26,8 +26,12 @@ function ToBeDonatedItemCard({ clothes, deleteItem, takeBackItem }) {
         <Details>Category: {clothes.category}</Details>
         {/* <Details>Last Worn: {clothes.last_worn_date}</Details> */}
         <Details>Notes: {clothes.notes}</Details>
-        <button onClick={handleTakeBackAction}>Take Back!</button>
-        <button onClick={handleDelete}>Donated!</button>
+        <button className="button" onClick={handleTakeBackAction}>
+          Take Back!
+        </button>
+        <button className="button" onClick={handleDelete}>
+          Donated!
+        </button>
       </div>
     </div>
   );

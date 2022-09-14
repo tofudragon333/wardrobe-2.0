@@ -18,11 +18,21 @@ function DonationSite({
     makeDonation(donate, siteId, siteName);
   }
   return (
-    <div>
-      <div>{site.name}</div>
-      <Details>Address:{site.address}</Details>
-      <Details>Phone number: {site.number}</Details>
-      <button onClick={handleDonateClick}>Donate!</button>
+    <div className="donation-site">
+      <img
+        width="300"
+        src="https://images.squarespace-cdn.com/content/v1/528fdfe1e4b03e7a072777b2/1417800023394-3CVO487YAAYG38ZTDVNF/image-asset.png"
+        alt="wardrobe"
+      />
+      <div className="donation-site-name">{site.name}</div>
+      <br />
+      <div>Address:{site.address}</div>
+      <div>Phone number: {site.number}</div>
+      <div>
+        <button className="button" onClick={handleDonateClick}>
+          Donate!
+        </button>
+      </div>
       <br />
     </div>
   );

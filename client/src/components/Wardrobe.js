@@ -15,10 +15,14 @@ function Wardrobe({
 }) {
   // filter by category of item
   const [filteredClothes, setFilteredClothes] = useState("");
+  // adjust filter type
+  const [searchFilter, setSearchFilter] = useState("category");
 
   // filter by category of item, part 2
   const clothesToDisplay = wardrobe.filter((item) => {
-    if (item.category.toLowerCase().includes(filteredClothes.toLowerCase())) {
+    if (
+      item[searchFilter].toLowerCase().includes(filteredClothes.toLowerCase())
+    ) {
       return item;
     }
   });
@@ -54,7 +58,12 @@ function Wardrobe({
   return (
     <div>
       <h1>Wardrobe</h1>
-      <Search wardrobe={wardrobe} setFilteredClothes={setFilteredClothes} />
+      <Search
+        wardrobe={wardrobe}
+        setFilteredClothes={setFilteredClothes}
+        setSearchFilter={setSearchFilter}
+        searchFilter={searchFilter}
+      />
       <Card.Group className="grid-container" itemsPerRow={3}>
         {cards}
       </Card.Group>

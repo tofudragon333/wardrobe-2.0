@@ -22,6 +22,7 @@ import ToBeDonated from "./components/ToBeDonated";
 import { differenceInCalendarMonths } from "date-fns";
 import SparksNoJoy from "./components/SparksNoJoy";
 import Outfits from "./components/Outfits";
+import Settings from "./components/Settings";
 
 function App() {
   const navigate = useNavigate();
@@ -261,7 +262,7 @@ function App() {
   if (!user) {
     return (
       <div>
-        <h1>The Lion, the Witch, and the better Wardrobe</h1>
+        <h1>The Lion, the Witch, and the Better Wardrobe</h1>
         <img
           className="login-page-image"
           src="https://www.apetogentleman.com/wp-content/uploads/2020/04/minimalist-wardrobe.jpg"
@@ -294,6 +295,9 @@ function App() {
           </button>
           <button className="button" onClick={() => runScanTest()}>
             Run Date Scan
+          </button>
+          <button className="button" onClick={() => navigate("/settings")}>
+            Settings
           </button>
         </div>
         {/* <Search /> */}
@@ -377,6 +381,7 @@ function App() {
             }
           ></Route>
           <Route path="/outfits" element={<Outfits />}></Route>
+          <Route path="/settings" element={<Settings />}></Route>
         </Routes>
       </div>
     );

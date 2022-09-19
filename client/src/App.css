@@ -1,10 +1,14 @@
 .App {
   text-align: center;
+  background-color: #303030;
+  color: white;
+  background-size: 100% auto;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  background-color: 303030;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,14 +18,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #303030;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: gray;
 }
 
 .App-link {
@@ -36,3 +40,201 @@
     transform: rotate(360deg);
   }
 }
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction:row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  /* grid-template-columns: auto auto auto auto; */
+}
+
+.custom-card {
+  margin: 20px;
+  /* box-shadow: 8px 8px 5px #616161; */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5), 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+  width: 300px;
+  height: 520px; 
+  background-color: #555555;
+  border: 5px gray;
+  border-radius: 4px;
+
+}
+
+.custom-card img {
+  display: flex;
+  border-radius: 4px;
+  border: 1px;
+  justify-content: center;
+  padding-left: 20px;
+    padding-top: 20px;
+    max-width: 250px;
+  max-height: 400px;
+
+}
+
+.button {
+  background-color: #7f7f80; /* Green */
+  border: 2px black;
+  border-radius: 4px;
+  color: black;
+  padding: 5px 9px;
+  margin: 4px 2px;  
+  display: inline-block;
+  font-size: 16px;
+  flex-direction: row;
+  transition-duration: 0.4s;
+}
+.button:hover {
+  background-color: #42628b; /* Green */
+  color: white;
+}
+
+.wrapper {
+  position: center;
+    display: inline-block;
+    min-width: 100px;
+}
+
+/* .search-icon {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 14px;
+} */
+
+.search-bar-input {
+  display: flex;
+  justify-content: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 20px;
+  width: 100%;
+  padding: 2px 30px 2px 30px;
+  outline: 0;
+  background-color: #a9a9a9;
+}
+.search-bar-input:hover, .search-bar-input:focus {
+  border: 1.5px solid #0abae1;
+  background-color: white;
+}
+/* .search-icon {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 14px;
+} */
+
+
+.navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flexbox;
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.notes {
+  width: 800px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.donation-site {
+  display: grid;
+  justify-content: center;
+}
+
+.donation-site img {
+  display: flexbox;
+  justify-content: center;
+}
+
+.donation-site-name {
+  font-size: 20px;
+  display: flexbox;
+  justify-content: center;
+}
+
+.login-container {
+  display: flexbox;
+  justify-content: space-evenly;
+}
+
+.login-page-image {
+  display: flex;
+  width: 300px;
+  justify-content: center;
+  margin-left: 170px;
+} 
+
+.homepage-container h5 {
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.homepage-pictures {
+  display: inline-block;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #7f7f80; /* Green */
+  border: 2px black;
+  border-radius: 4px;
+  color: black;
+  padding: 5px 9px;
+  margin: 4px 2px;  
+  display: inline-block;
+  font-size: 16px;
+  flex-direction: row;
+  transition-duration: 0.4s;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #555555;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: rgb(3, 130, 208);}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #42628b;}

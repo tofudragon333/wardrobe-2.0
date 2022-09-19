@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+`;
 
 function Login({ setUser }) {
   const [username, setUsername] = useState("");
@@ -23,7 +27,7 @@ function Login({ setUser }) {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
           onChange={(e) => setUsername(e.target.value)}
@@ -34,7 +38,7 @@ function Login({ setUser }) {
           onChange={(e) => setPassword(e.target.value)}
           placeholder=" enter password/here"
         />
-        <button> Submit </button>
+        <button className="button"> Submit </button>
       </form>
     </Container>
   );

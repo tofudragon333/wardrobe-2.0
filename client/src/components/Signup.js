@@ -23,7 +23,7 @@ function SignUp({ setUser }) {
       .then((data) => console.log("SignUp POST", data));
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <label htmlFor="username">Username:</label>
       <input
         type="text"
@@ -45,7 +45,7 @@ function SignUp({ setUser }) {
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
       />
-      <button type="submit">Submit</button>
+      <button className="button" type="submit">Submit</button>
     </form>
   );
 }

@@ -15,21 +15,23 @@ function ToBeDonatedItemCard({ clothes, deleteItem, takeBackItem }) {
 
   return (
     <div>
-      <div>
-        <div>
-          <img
-            width={250}
-            floated="left"
-            src={clothes.image}
-            alt={clothes.name}
-          />
-        </div>
+      <div className="custom-card">
+        <img
+          width={250}
+          floated="left"
+          src={clothes.image}
+          alt={clothes.name}
+        />
         <div>Name: {clothes.name}</div>
         <Details>Category: {clothes.category}</Details>
         {/* <Details>Last Worn: {clothes.last_worn_date}</Details> */}
         <Details>Notes: {clothes.notes}</Details>
-        <button onClick={handleTakeBackAction}>Take Back!</button>
-        <button onClick={handleDelete}>Donated!</button>
+        <button className="button" onClick={handleTakeBackAction}>
+          Take Back!
+        </button>
+        <button className="button" onClick={handleDelete}>
+          Donated!
+        </button>
       </div>
     </div>
   );

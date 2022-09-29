@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :outfits
   resources :donation_sites
   resources :clothing_articles
 

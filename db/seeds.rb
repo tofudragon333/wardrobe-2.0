@@ -18,7 +18,8 @@ ashley = User.create(
     :name => "Ashley",
     :username => "Tofu",
     :password => "123",
-    :location => "New York, New York"
+    :location => "New York, New York",
+    :joy_time => 3,
 )
 puts "created users"
 

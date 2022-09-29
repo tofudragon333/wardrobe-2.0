@@ -13,8 +13,9 @@ class UsersController < ApplicationController
     end
     #sign-up/POST
     def create
-        user = User.create(user_params)
-        byebug
+        user = User.create!(user_params)
+        session[:user_id] = user.id
+        # byebug
         if user.valid?
           render json: user, status: :created
         else
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
     #PATCH/update user information
     def update
         user = User.find_by(id: session[:user_id])
+        # byebug
         if user
             user.update(update_user_params)
         end
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
     end
     # strong params for updating user info
     def update_user_params
-        params.permit(:name, :username, :password, :location)
+        params.permit(:name, :username, :password, :location, :joy_time)
     end
     
 end

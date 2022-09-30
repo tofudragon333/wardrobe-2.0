@@ -32,6 +32,7 @@ function App() {
   const [donationSites, setDonationSites] = useState([]);
   const [refresh, setRefresh] = useState(true);
   const [updateWornDateItem, setUpdateWornDateItem] = useState("");
+  const [timeInterval, setTimeInterval] = useState(3);
 
   // lifts state from ClothingArticle component
   const [donate, setDonate] = useState("nothing! bahumbug!");
@@ -86,6 +87,18 @@ function App() {
       },
       body: JSON.stringify(clothesObject),
     }).then(() => fetchAllData());
+  }
+
+  // update joy time in settings. related to intervalTime state.
+  function updateJoyTime(intervalTime) {
+    console.log("ERica");
+    fetch(`/users/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ joy_time: intervalTime }),
+    });
   }
 
   // update Date worn on item
@@ -244,11 +257,12 @@ function App() {
         //then
         new Date(yearOld, monthOld, dayOld)
       );
-      console.log(result);
+      console.log("differenceInCalendarMonths:", result);
       // debugger;
-      if (result > 3) {
+      console.log("ericaaaaa", result + 1);
+      if (result + 1 >= timeInterval) {
         toDonateArray.push(item);
-        console.log(toDonateArray);
+        // console.log(toDonateArray);
         // debugger;
       }
     });
@@ -381,7 +395,16 @@ function App() {
             }
           ></Route>
           <Route path="/outfits" element={<Outfits />}></Route>
-          <Route path="/settings" element={<Settings />}></Route>
+          <Route
+            path="/settings"
+            element={
+              <Settings
+                timeInterval={timeInterval}
+                setTimeInterval={setTimeInterval}
+                updateJoyTime={updateJoyTime}
+              />
+            }
+          ></Route>
         </Routes>
       </div>
     );

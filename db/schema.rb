@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_07_205428) do
+ActiveRecord::Schema.define(version: 2022_09_20_160101) do
 
   create_table "clothing_articles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "donation_site_id"
+    t.integer "user_id", default: 0
+    t.integer "donation_site_id", default: 0
     t.string "name"
     t.string "image"
     t.string "category"
@@ -35,11 +35,22 @@ ActiveRecord::Schema.define(version: 2022_09_07_205428) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "outfits", force: :cascade do |t|
+    t.integer "user_id", default: 0
+    t.integer "top", default: 0
+    t.integer "bottom", default: 0
+    t.integer "shoes", default: 0
+    t.integer "accessory", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
     t.string "password_digest"
     t.string "location"
+    t.integer "joy_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

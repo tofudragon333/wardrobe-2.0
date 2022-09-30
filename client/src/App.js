@@ -260,7 +260,7 @@ function App() {
       console.log("differenceInCalendarMonths:", result);
       // debugger;
       console.log("ericaaaaa", result + 1);
-      if (result + 1 > timeInterval) {
+      if (result + 1 >= timeInterval) {
         toDonateArray.push(item);
         // console.log(toDonateArray);
         // debugger;

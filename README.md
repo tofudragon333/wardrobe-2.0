@@ -1,5 +1,33 @@
 # Project Template: React/Rails API
 
+## Summary
+
+This was my phase 5 Flatiron Capstone/final project.
+It is a clothing organizer app that integrates a use-based clothing donation option.
+
+This is a WIP as I plan on adding more features
+
+## Instructions
+
+run:
+npm install --prefix client
+bundle install
+rails db:migrate db:seed
+rails s
+(at this point, the backend should be running on http://localhost:4000)
+
+in a new terminal, run:
+npm start --prefix client
+(this will start the app on https://localhost:3000)
+
+login using:
+username: Tofu
+password: 123
+
+## Planning docs
+
+See https://docs.google.com/document/d/1yDLXKWxH9XRZyq9017s9078Wkyu3RVV31GOL--OhaA4/edit?usp=sharing
+
 ## Description
 
 This project is scaffolded so that you can build a React frontend and Rails

@@ -11,11 +11,6 @@ function Search({
       <h5>Search through wardrobe:</h5>
       {/* later, add more filters */}
       <form className="wrapper" onmouseout="this.value = ''; this.blur();">
-        {/* <img
-          className="search-icon"
-          src="https://toppng.com/uploads/preview/search-magnifying-glass-icon-png-grey-1156361611872u4ycd60h.png"
-          alt="magnifying glass"
-        /> */}
         <input
           className="search-bar-input"
           type="text"

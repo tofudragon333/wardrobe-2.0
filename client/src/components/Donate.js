@@ -6,7 +6,6 @@ import DonationSite from "./DonationSite";
 function Donate({ donationSites, setDonate, donate, makeDonation }) {
   // useEffect(() => {}, []);
   const [donationSiteFilter, setDonationSiteFilter] = useState("");
-  // console.log(donate);
   return (
     <div>
       <h1>Donate</h1>

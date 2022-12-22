@@ -24,7 +24,6 @@ function ToBeDonatedItemCard({ clothes, deleteItem, takeBackItem }) {
         />
         <div>Name: {clothes.name}</div>
         <Details>Category: {clothes.category}</Details>
-        {/* <Details>Last Worn: {clothes.last_worn_date}</Details> */}
         <Details>Notes: {clothes.notes}</Details>
         <button className="button" onClick={handleTakeBackAction}>
           Take Back!

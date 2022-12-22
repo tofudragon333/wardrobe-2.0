@@ -15,7 +15,6 @@ function ClothingArticle({
   setItemToUpdate,
 }) {
   const navigate = useNavigate();
-  // console.log("clothing article:", clothes);
 
   function handleDonateClick() {
     console.log("donation button clicked, item info:", clothes);
@@ -56,7 +55,6 @@ function ClothingArticle({
         width={250}
         src={clothes.image}
         alt={clothes.name}
-        // onClick={handleWardrobeClick}
         wrapped
         ui={false}
       />

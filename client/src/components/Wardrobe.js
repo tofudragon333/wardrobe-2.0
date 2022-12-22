@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import { useEffect } from "react";
 import ClothingArticle from "./ClothingArticle";
-import { Grid, Card } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import Search from "./Search";
 
 function Wardrobe({
@@ -26,13 +25,6 @@ function Wardrobe({
       return item;
     }
   });
-
-  // // filter by color of item, part 2
-  // const clothesToDisplay2 = wardrobe.filter((item) => {
-  //   if (item.category.toLowerCase().includes(filteredClothes2.toLowerCase())) {
-  //     return item;
-  //   }
-  // });
 
   // to run the scan whenever wardrobe reloads/is updated
   useEffect(() => {

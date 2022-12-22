@@ -18,16 +18,12 @@ function ClothingForm({ user, addItem }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    // console.log("name:", name);
-    // console.log("value:", value);
     setFormData({ ...formData, [name]: value });
   }
 
   function handleNumberChange(e) {
     const value = parseInt(e.target.value);
     const { name } = e.target;
-    // console.log("name:", name);
-    // console.log("value:", value);
     setFormData({ ...formData, [name]: value });
   }
 

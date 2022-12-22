@@ -131,19 +131,6 @@ function UpdateItem({ user, addItem, itemToUpdate, setRefresh, refresh }) {
         <br />
         <input type="submit" value="Submit" />
       </form>
-      {/* testing to see if i can separately update last_worn_date as a number
-      (no) */}
-      {/* <form>
-        <label>Last Worn:</label>
-        <input
-          type="number"
-          name="last_worn_date"
-          placeholder="last worn: YYYYMMDD"
-          value={formData.last_worn_date}
-          onChange={handleChange}
-        />
-        <input type="submit" value="Submit" />
-      </form> */}
     </div>
   );
 }

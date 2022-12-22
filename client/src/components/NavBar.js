@@ -1,7 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
 import { Link } from "react-router-dom";
-// import { useState } from "react";
 
 function NavBar({ setUser, setRefresh, refresh }) {
   // function handleLogOut() {
@@ -11,7 +9,6 @@ function NavBar({ setUser, setRefresh, refresh }) {
   // }
   return (
     <div className="navbar">
-      {/* <Link to="/home">Home</Link> */}
       <Link className="button" to="/">
         Home
       </Link>
